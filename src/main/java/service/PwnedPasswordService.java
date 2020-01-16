@@ -18,6 +18,7 @@ import java.math.BigInteger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -77,7 +78,7 @@ public class PwnedPasswordService {
     private String getSHA1Hash(String str) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
-            md.update(str.getBytes(Charset.forName("UTF-8")));
+            md.update(str.getBytes(StandardCharsets.UTF_8));
             return new BigInteger(1, md.digest()).toString(16).toUpperCase();
         } catch (NoSuchAlgorithmException e) {
             LOGGER.info("[!] " + e.getMessage());
